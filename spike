@@ -1,0 +1,34 @@
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class spike : MonoBehaviour
+{
+    Gerak komponenGerak;
+    // Start is called before the first frame update
+    void Start()
+    {
+        komponenGerak = GameObject.Find("kucing").GetComponent<Gerak>();
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            // PAKE INI JIKA MAU KARAKTER LANGSUNG HILANG KETIKA KENA SPIKE
+            // Destroy(komponenGerak.gameObject);
+
+            // PAKE INI JIKA NYAWA KARAKTER INGIN BERKURAN DULU SEBELUM HILANG
+            komponenGerak.nyawa--;
+
+            // --- TAMBAHKAN KODE INI AGAR SPIKE-NYA SENDIRI YANG HILANG ---
+            Destroy(gameObject);
+        }
+    }
+}
